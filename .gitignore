@@ -1,0 +1,17 @@
+# Briefing interno — não versionar
+prompt/
+
+# Dependências (caso futuramente use npm)
+node_modules/
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Editores
+.vscode/
+*.suo
+*.user
+
+# Logs
+*.log

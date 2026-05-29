@@ -1,0 +1,183 @@
+/* =============================================================
+   DESIGN SYSTEM — Renascer Distribuidora de EPIs
+   Tokens, variáveis CSS, tipografia e estilos base
+   ============================================================= */
+
+/* === IMPORTAÇÃO DE FONTES === */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap');
+
+:root {
+  /* === CORES PRIMÁRIAS === */
+  --color-navy:       #003051;
+  --color-red:        #CC2323;
+  --color-cream:      #F9F9F4;
+
+  /* === TONS DERIVADOS === */
+  --color-navy-dark:  #001e38;
+  --color-navy-mid:   #004a7c;
+  --color-red-dark:   #9e1a1a;
+  --color-red-light:  #e63333;
+
+  /* === NEUTROS === */
+  --color-white:      #ffffff;
+  --color-gray-100:   #f5f5f5;
+  --color-gray-200:   #e8e8e8;
+  --color-gray-400:   #9a9a9a;
+  --color-gray-600:   #555555;
+  --color-gray-800:   #222222;
+  --color-black:      #0a0a0a;
+
+  /* === FUNDOS DE SEÇÃO === */
+  --bg-dark:    var(--color-navy);
+  --bg-darker:  var(--color-navy-dark);
+  --bg-light:   var(--color-gray-100);
+  --bg-white:   var(--color-white);
+  --bg-accent:  var(--color-red);
+
+  /* === TIPOGRAFIA === */
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body: 'Barlow', sans-serif;
+
+  /* Escalas tipográficas */
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+  --text-4xl:  2.25rem;
+  --text-5xl:  3rem;
+  --text-6xl:  4rem;
+  --text-hero: clamp(3.5rem, 9vw, 7rem);
+
+  /* Pesos tipográficos */
+  --weight-light:     300;
+  --weight-regular:   400;
+  --weight-medium:    500;
+  --weight-semibold:  600;
+  --weight-bold:      700;
+  --weight-extrabold: 800;
+  --weight-black:     900;
+
+  /* === ESPAÇAMENTO E GRID === */
+  --container-max:   1280px;
+  --container-wide:  1440px;
+  --gutter:          clamp(1rem, 4vw, 2rem);
+
+  --space-xs:   0.25rem;
+  --space-sm:   0.5rem;
+  --space-md:   1rem;
+  --space-lg:   1.5rem;
+  --space-xl:   2rem;
+  --space-2xl:  3rem;
+  --space-3xl:  4rem;
+  --space-4xl:  6rem;
+  --space-5xl:  8rem;
+
+  /* === BORDAS E SOMBRAS === */
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg:  16px;
+  --radius-pill: 999px;
+
+  --shadow-sm:  0 2px 8px rgba(0,0,0,0.08);
+  --shadow-md:  0 8px 24px rgba(0,0,0,0.12);
+  --shadow-lg:  0 20px 60px rgba(0,0,0,0.18);
+  --shadow-red: 0 8px 32px rgba(204,35,35,0.3);
+}
+
+/* === RESET E BASE === */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: var(--weight-regular);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--color-gray-800);
+  background: var(--color-white);
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+/* === CONTAINER === */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.container-wide {
+  max-width: var(--container-wide);
+}
+
+/* === TIPOGRAFIA BASE === */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-black);
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+p {
+  font-family: var(--font-body);
+  font-weight: var(--weight-regular);
+  line-height: 1.7;
+  color: var(--color-gray-600);
+}
+
+/* === SELEÇÃO DE TEXTO === */
+::selection {
+  background: var(--color-red);
+  color: var(--color-white);
+}
+
+/* === ACESSIBILIDADE — Reduzir Movimento === */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

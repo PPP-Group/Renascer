@@ -1,0 +1,250 @@
+/* =============================================================
+   RESPONSIVO — Renascer Distribuidora de EPIs
+   Media queries — Mobile First
+   ============================================================= */
+
+/* === MOBILE PEQUENO (< 480px) === */
+/* Estilos base já cobrem esse breakpoint */
+
+/* === TABLET PEQUENO (≥ 480px) === */
+@media (min-width: 480px) {
+  .hero__buttons {
+    flex-direction: row;
+  }
+
+  .coverage__cities {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* === TABLET (≥ 768px) === */
+@media (min-width: 768px) {
+  .about__features {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .products__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .testimonials__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .differentials__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* === DESKTOP (≥ 1024px) === */
+@media (min-width: 1024px) {
+  .navbar__toggle {
+    display: none !important;
+  }
+
+  .navbar__links {
+    display: flex !important;
+  }
+
+  .about__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .products__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .differentials__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .testimonials__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .contact__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer__grid {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
+
+  .coverage__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* === DESKTOP LARGO (≥ 1280px) === */
+@media (min-width: 1280px) {
+  .hero__title {
+    font-size: clamp(4rem, 9vw, 7rem);
+  }
+}
+
+/* === MOBILE / TABLET — Ajustes Específicos === */
+@media (max-width: 1023px) {
+  /* Navbar mobile */
+  .navbar__links {
+    display: none;
+  }
+
+  .navbar__cta--desktop {
+    display: none;
+  }
+
+  .navbar__toggle {
+    display: flex;
+  }
+
+  /* Hero ajustes */
+  .hero__title {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+  }
+
+  .hero__stats {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .hero__stat {
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    padding: var(--space-md) 0;
+  }
+
+  .hero__stat:last-child {
+    border-bottom: none;
+  }
+
+  /* Sobre — 1 coluna */
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .about__image-wrapper {
+    order: -1;
+  }
+
+  .about__floating-card--1 {
+    top: auto;
+    bottom: -15px;
+    right: 10px;
+  }
+
+  .about__floating-card--2 {
+    left: 10px;
+    bottom: 30px;
+  }
+
+  .about__features {
+    grid-template-columns: 1fr;
+  }
+
+  /* Contato — 1 coluna */
+  .contact__grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Cobertura — 1 coluna */
+  .coverage__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .coverage__map {
+    order: -1;
+  }
+
+  /* Footer — 1 coluna */
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .footer__brand {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero__stat-number {
+    font-size: var(--text-3xl);
+  }
+
+  .products__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .differentials__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonials__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .coverage__cities {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__buttons {
+    flex-direction: column;
+  }
+
+  .hero__buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .contact__buttons {
+    flex-direction: column;
+  }
+
+  .contact__buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 479px) {
+  .about__floating-card {
+    display: none;
+  }
+
+  .hero__content {
+    padding-top: var(--space-3xl);
+  }
+
+  .brands-track {
+    gap: var(--space-2xl);
+  }
+
+  .brand-item {
+    font-size: var(--text-lg);
+  }
+
+  .whatsapp-float {
+    bottom: 16px;
+    right: 16px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .whatsapp-float svg {
+    width: 28px;
+    height: 28px;
+  }
+}

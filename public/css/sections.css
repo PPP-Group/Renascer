@@ -33,13 +33,14 @@
 
 .navbar__logo svg,
 .navbar__logo img {
-  height: 64px;
+  height: 80px;
   width: auto;
+  transition: height 0.3s ease;
 }
 
 .navbar.scrolled .navbar__logo svg,
 .navbar.scrolled .navbar__logo img {
-  height: 52px;
+  height: 56px;
 }
 
 .navbar__links {
@@ -433,12 +434,14 @@
   padding: var(--space-lg);
   background: var(--color-gray-100);
   border-radius: var(--radius-md);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .about__feature:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-sm);
+  transform: scale(1.12);
+  box-shadow: var(--shadow-md);
+  z-index: 10;
 }
 
 .about__feature-icon {
@@ -481,31 +484,14 @@
   padding: var(--space-2xl);
   border: 1px solid var(--color-gray-200);
   position: relative;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, z-index 0s;
   cursor: pointer;
 }
 
-.product-card::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: var(--color-red);
-  transform: scaleY(0);
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-  transform-origin: bottom;
-}
-
 .product-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-md);
-}
-
-.product-card:hover::before {
-  transform: scaleY(1);
+  transform: scale(1.12);
+  box-shadow: var(--shadow-lg);
+  z-index: 10;
 }
 
 .product-card__icon {
@@ -517,7 +503,7 @@
   justify-content: center;
   font-size: 2rem;
   margin-bottom: var(--space-lg);
-  background: linear-gradient(135deg, rgba(0,48,81,0.08), rgba(0,48,81,0.02));
+  background: none;
 }
 
 .product-card__title {
@@ -594,13 +580,16 @@
   border-radius: var(--radius-md);
   padding: var(--space-2xl);
   text-align: center;
-  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .diff-card:hover {
-  transform: translateY(-8px);
+  transform: scale(1.12);
   background: rgba(255,255,255,0.1);
   border-color: rgba(255,255,255,0.2);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  z-index: 10;
 }
 
 .diff-card__icon {
@@ -612,7 +601,7 @@
   align-items: center;
   justify-content: center;
   font-size: 1.75rem;
-  background: linear-gradient(135deg, rgba(204,35,35,0.2), rgba(204,35,35,0.05));
+  background: none;
 }
 
 .diff-card__title {
@@ -651,29 +640,97 @@
   justify-content: center;
 }
 
-/* Mapa estilizado de MG */
-.coverage__map-visual {
+/* Mapa Leaflet */
+#coverage-map {
   width: 100%;
-  max-width: 400px;
-  aspect-ratio: 1;
-  background: linear-gradient(135deg, var(--color-gray-100), var(--color-cream));
+  height: 420px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-gray-200);
+  z-index: 0;
+}
+
+/* Remove controles padrão do Leaflet para visual limpo */
+#coverage-map .leaflet-control-attribution {
+  font-size: 9px;
+  opacity: 0.6;
+  background: rgba(255,255,255,0.7) !important;
+  backdrop-filter: blur(4px);
+  border-radius: 4px 0 0 0;
+}
+
+/* Custom pin markers */
+.map-pin {
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
+  background: var(--color-red);
+  border: 3px solid var(--color-white);
+  box-shadow: 0 2px 8px rgba(204, 35, 35, 0.4);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
 }
 
-.coverage__map-visual::before {
-  content: 'MG';
-  font-family: var(--font-display);
-  font-weight: var(--weight-black);
-  font-size: 6rem;
-  color: rgba(0,48,81,0.06);
+.map-pin::after {
+  content: '';
   position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(204, 35, 35, 0.25);
+  animation: pin-pulse 2s ease-out infinite;
 }
 
+.map-pin--active {
+  transform: scale(1.4);
+  box-shadow: 0 4px 16px rgba(204, 35, 35, 0.55);
+}
+
+.map-pin--active::after {
+  border-color: rgba(204, 35, 35, 0.5);
+}
+
+@keyframes pin-pulse {
+  0% { transform: scale(1); opacity: 1; }
+  70% { transform: scale(1.8); opacity: 0; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+/* Custom tooltip */
+.map-tooltip {
+  background: var(--color-navy);
+  color: var(--color-cream);
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: none;
+}
+
+.map-tooltip::before {
+  border-top-color: var(--color-navy) !important;
+}
+
+.map-tooltip-desc {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: var(--weight-regular);
+  font-size: var(--text-xs);
+  text-transform: none;
+  letter-spacing: 0;
+  opacity: 0.7;
+  margin-top: 2px;
+}
+
+/* City cards */
 .coverage__cities {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -688,13 +745,16 @@
   background: var(--color-gray-100);
   border-radius: var(--radius-md);
   border: 1px solid var(--color-gray-200);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
 }
 
-.city-card:hover {
+.city-card:hover,
+.city-card--active {
   transform: translateY(-4px);
   box-shadow: var(--shadow-sm);
   border-color: var(--color-red);
+  background: var(--color-white);
 }
 
 .city-card__pin {
@@ -737,12 +797,14 @@
   padding: var(--space-2xl);
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--color-gray-200);
-  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .testimonial-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-md);
+  transform: scale(1.12);
+  box-shadow: var(--shadow-lg);
+  z-index: 10;
 }
 
 .testimonial-card__stars {
@@ -759,6 +821,7 @@
   line-height: 1.7;
   margin-bottom: var(--space-xl);
   position: relative;
+  padding-top: var(--space-sm);
 }
 
 .testimonial-card__text::before {
@@ -768,7 +831,7 @@
   color: var(--color-red);
   opacity: 0.3;
   position: absolute;
-  top: -10px;
+  top: -16px;
   left: -5px;
   line-height: 1;
 }
@@ -783,7 +846,7 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--color-navy), var(--color-navy-mid));
+  background: var(--color-navy);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -791,6 +854,7 @@
   font-family: var(--font-display);
   font-weight: var(--weight-bold);
   font-size: var(--text-lg);
+  flex-shrink: 0;
 }
 
 .testimonial-card__name {
@@ -992,13 +1056,17 @@
 }
 
 .footer__logo {
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-xs);
+  margin-top: -1rem;
 }
 
 .footer__logo svg,
 .footer__logo img {
-  height: 40px;
+  height: 110px;
   width: auto;
+  max-width: 280px;
+  object-fit: contain;
+  display: block;
 }
 
 .footer__tagline {

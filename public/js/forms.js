@@ -131,32 +131,43 @@
       }
     });
 
-    // Simular envio (em produção, substituir por chamada real à API)
+    // Formatar mensagem para WhatsApp
+    var whatsappNumber = '553540028922';
+    var text = 'Olá! Gostaria de fazer um contato através do site.\n\n';
+    
+    if (data.nome) text += '*Nome:* ' + data.nome + '\n';
+    if (data.email) text += '*E-mail:* ' + data.email + '\n';
+    if (data.telefone || data.whatsapp) text += '*Telefone:* ' + (data.telefone || data.whatsapp) + '\n';
+    if (data.empresa) text += '*Empresa:* ' + data.empresa + '\n';
+    
+    if (data.interesse) {
+      var interesses = Array.isArray(data.interesse) ? data.interesse.join(', ') : data.interesse;
+      text += '*Interesse em:* ' + interesses + '\n';
+    }
+    
+    if (data.mensagem) text += '\n*Mensagem:*\n' + data.mensagem;
+
+    var whatsappUrl = 'https://wa.me/' + whatsappNumber + '?text=' + encodeURIComponent(text);
+
+    // Feedback visual e Redirecionamento
     var submitBtn = form.querySelector('button[type="submit"]');
     var originalText = submitBtn.innerHTML;
     
-    submitBtn.innerHTML = '<span>ENVIANDO...</span>';
+    submitBtn.innerHTML = '<span>REDIRECIONANDO PARA WHATSAPP...</span>';
+    submitBtn.style.background = '#25D366'; // Cor do WhatsApp
     submitBtn.disabled = true;
-    submitBtn.style.opacity = '0.7';
 
-    // Simulação de envio — em produção usar fetch/axios
     setTimeout(function() {
-      // Sucesso
-      submitBtn.innerHTML = '<span>✓ MENSAGEM ENVIADA!</span>';
-      submitBtn.style.background = '#25D366';
+      window.open(whatsappUrl, '_blank');
       
-      // Reset após 3 segundos
+      // Limpa e reseta o formulário
       setTimeout(function() {
         form.reset();
         submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;
-        submitBtn.style.opacity = '';
         submitBtn.style.background = '';
-      }, 3000);
-
-      // Log no console para debug (remover em produção)
-      console.log('Dados do formulário:', data);
-    }, 1500);
+      }, 1000);
+    }, 800);
   });
 
 })();

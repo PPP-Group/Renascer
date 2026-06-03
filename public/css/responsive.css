@@ -116,10 +116,6 @@
   }
 
   /* Hero ajustes */
-  .hero__content {
-    padding-top: var(--space-5xl);
-  }
-
   .hero__title {
     font-size: clamp(2.5rem, 8vw, 4rem);
   }
@@ -238,10 +234,6 @@
     display: none;
   }
 
-  .hero__content {
-    padding-top: var(--space-4xl);
-  }
-
   .navbar__logo img,
   .navbar__logo svg {
     height: 48px;
@@ -261,7 +253,7 @@
   }
 
   .whatsapp-float {
-    bottom: 24px;
+    bottom: 30px;
     right: 20px;
     width: 52px;
     height: 52px;

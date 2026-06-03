@@ -172,6 +172,7 @@
   align-items: center;
   background: var(--color-navy-dark);
   overflow: hidden;
+  padding-top: 100px;
 }
 
 .hero__bg {
@@ -204,7 +205,7 @@
   position: relative;
   z-index: 3;
   max-width: 720px;
-  padding-top: var(--space-4xl);
+  padding-top: var(--space-lg);
 }
 
 .hero__title {

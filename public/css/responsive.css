@@ -93,6 +93,16 @@
 /* === MOBILE / TABLET — Ajustes Específicos === */
 @media (max-width: 1023px) {
   /* Navbar mobile */
+  .navbar__logo img,
+  .navbar__logo svg {
+    height: 60px;
+  }
+  
+  .navbar.scrolled .navbar__logo img,
+  .navbar.scrolled .navbar__logo svg {
+    height: 50px;
+  }
+
   .navbar__links {
     display: none;
   }
@@ -106,6 +116,10 @@
   }
 
   /* Hero ajustes */
+  .hero__content {
+    padding-top: var(--space-5xl);
+  }
+
   .hero__title {
     font-size: clamp(2.5rem, 8vw, 4rem);
   }
@@ -225,7 +239,17 @@
   }
 
   .hero__content {
-    padding-top: var(--space-3xl);
+    padding-top: var(--space-4xl);
+  }
+
+  .navbar__logo img,
+  .navbar__logo svg {
+    height: 48px;
+  }
+
+  .navbar.scrolled .navbar__logo img,
+  .navbar.scrolled .navbar__logo svg {
+    height: 40px;
   }
 
   .brands-track {
@@ -237,10 +261,11 @@
   }
 
   .whatsapp-float {
-    bottom: 16px;
-    right: 16px;
+    bottom: 24px;
+    right: 20px;
     width: 52px;
     height: 52px;
+    z-index: 9999;
   }
 
   .whatsapp-float svg {
